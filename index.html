@@ -150,81 +150,6 @@
       text-align: center;
       margin-bottom: 1em;
     }
-    /* Speakers Grid */
-    .speakers {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1.5rem;
-    }
-
-    .organizers{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1rem;               
-  justify-items:center;   
-}
-
-    
-    /* ---- Cards grid ---- */
-    .grid {
-      display: grid;
-      gap: 1.75rem;
-    }
-    @media (min-width: 600px){ .grid { grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); } }
-
-    .card {
-      background:#fff;
-      border-radius:1rem;
-      box-shadow:0 2px 8px rgba(0,0,0,.06);
-      padding:1.25rem 0.25rem;
-      text-align:center;
-      transition:transform .3s ease;
-    }
-    .card:hover{ transform:translateY(-4px); }
-
-    .card img{
-      width:120px; height:120px;
-      border-radius:50%;
-      object-fit:cover;
-      margin-bottom:0.5rem;
-    }
-    .card h3{ margin:0 0 .25rem; font-size:1.0rem; }
-    .card span{ font-size:.9rem; color:var(--text-light); }
-    .card a{ color:var(--primary); text-decoration:none; }
-
-
-    .instructorphoto img {
-      width: 100px;
-      height: 100px; /* Ensure the height matches the width */
-      border-radius: 50%; /* Makes the image circular */
-      object-fit: cover; /* Ensures the image covers the entire area without distortion */
-      margin-bottom: 5px;
-    }
-
-.instructor{
-  width:100%;                
-  max-width:140px;
-  text-align: center;
-}
-    .instructor a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-    .speaker-card h3 {
-      margin-top: 0;
-    }
-    .speaker-card a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-
-    /* Footer */
-    .footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1em 0;
-    }
 
     /* ---- Schedule ---- */
     .schedule-wrapper { overflow-x: auto; }
@@ -312,38 +237,6 @@
       margin-top: 0.2rem;
     }
     
-    .sub-items {
-      list-style: none;
-      margin-top: 1rem;
-      margin-left: 2rem;
-    }
-    
-    .sub-items li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #e9ecef;
-    }
-    
-    .sub-items li:last-child {
-      border-bottom: none;
-    }
-
-    /* Download Button */
-    .download-all {
-      text-align: center;
-      margin: 2rem 0;
-    }
-    
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 1rem 2rem;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
 
     /* Paper Links */
     .paper-links {
@@ -374,13 +267,6 @@
       padding: 0;
     }
 
-    /* Section Divider */
-    .section-divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #667eea, transparent);
-      margin: 3rem 0;
-    }
-
     .lecturer-list div {
       margin-bottom: 0.3em;
     }
@@ -389,15 +275,6 @@
       letter-spacing: 0.01em;
     }
 
-    /* #materials h3 {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    #materials.section {
-      padding-top: 0;
-      padding-bottom: 0;
-    } */
   </style>
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
