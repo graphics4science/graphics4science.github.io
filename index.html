@@ -53,24 +53,62 @@
       .visual-demo {
         flex-direction: column;
         margin: 0;
+        gap: 1rem;
       }
       
       .demo-column {
-        margin-bottom: 1rem;
+        margin-bottom: 0;
+      }
+      
+      .demo-column img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
       }
       
       .schedule-wrapper {
-        overflow-x: auto;
+        overflow-x: visible;
       }
       
       table.schedule {
-        min-width: 600px;
-        font-size: 0.9rem;
+        min-width: auto;
+        display: block;
       }
       
-      table.schedule th,
+      table.schedule thead {
+        display: none;
+      }
+      
+      table.schedule tbody {
+        display: block;
+      }
+      
+      table.schedule tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: #fff;
+        padding: 1rem;
+      }
+      
       table.schedule td {
-        padding: 0.5rem 0.75rem;
+        display: block;
+        padding: 0.5rem 0;
+        border-bottom: none;
+        text-align: left;
+      }
+      
+      table.schedule td:before {
+        content: attr(data-label) ": ";
+        font-weight: bold;
+        display: inline-block;
+        width: 80px;
+      }
+      
+      table.schedule td:last-child {
+        border-bottom: none;
       }
     }
     
@@ -87,6 +125,18 @@
       
       .container {
         padding: 0 0.5em;
+      }
+      
+      .visual-demo {
+        gap: 0.5rem;
+      }
+      
+      .demo-column img {
+        max-width: 250px;
+      }
+      
+      .demo-column p {
+        font-size: 1rem;
       }
     }
     
@@ -529,48 +579,48 @@
           </thead>
           <tbody>
             <tr>
-              <td>14:00 - 14:10</td>
-              <td><b>Introduction</b></td>
-              <td><a href="https://peterchencyc.com/" target="_blank">Peter Yichen Chen</a>, <a href="https://www.minghaoguo.com/" target="_blank">Minghao Guo</a></td>
-              <td><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Time">14:00 - 14:10</td>
+              <td data-label="Session"><b>Introduction</b></td>
+              <td data-label="Speaker(s)"><a href="https://peterchencyc.com/" target="_blank">Peter Yichen Chen</a>, <a href="https://www.minghaoguo.com/" target="_blank">Minghao Guo</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
             </tr>
             <tr>
-              <td>14:10 - 14:35</td>
-              <td><b>Visualization for Science</b></td>
-              <td><a href="https://vcg.seas.harvard.edu/" target="_blank">Hanspeter Pfister</a></td>
-              <td><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Time">14:10 - 14:35</td>
+              <td data-label="Session"><b>Visualization for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://vcg.seas.harvard.edu/" target="_blank">Hanspeter Pfister</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
             </tr>
             <tr>
-              <td>14:35 - 15:00</td>
-              <td><b>Simulation for Science</b></td>
-              <td><a href="https://www.cs.umd.edu/~lin/" target="_blank">Ming Lin</a></td>
-              <td><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Time">14:35 - 15:00</td>
+              <td data-label="Session"><b>Simulation for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://www.cs.umd.edu/~lin/" target="_blank">Ming Lin</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
             </tr>
             <tr>
-              <td>15:00 - 15:25</td>
-              <td><b>Imaging for Science</b></td>
-              <td><a href="https://billf.mit.edu/" target="_blank">Bill Freeman</a></td>
-              <td><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Time">15:00 - 15:25</td>
+              <td data-label="Session"><b>Imaging for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://billf.mit.edu/" target="_blank">Bill Freeman</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
             </tr>
             <tr>
-              <td>15:25 - 15:50</td>
-              <td><b>Geometry for Science</b></td>
-              <td><a href="https://www.cs.utexas.edu/~huangqx/" target="_blank">Qixing Huang</a></td>
-              <td><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Time">15:25 - 15:50</td>
+              <td data-label="Session"><b>Geometry for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://www.cs.utexas.edu/~huangqx/" target="_blank">Qixing Huang</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
             </tr>
             <tr>
-              <td>15:50 - 16:15</td>
-              <td><b>Design for Science</b></td>
-              <td><a href="https://cdfg.mit.edu/wojciech" target="_blank">Wojciech Matusik</a></td>
-              <td><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Time">15:50 - 16:15</td>
+              <td data-label="Session"><b>Design for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://cdfg.mit.edu/wojciech" target="_blank">Wojciech Matusik</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
             </tr>
             <tr>
-              <td>16:15 - 17:00</td>
-              <td>
+              <td data-label="Time">16:15 - 17:00</td>
+              <td data-label="Session">
                 <b>Panel Discussion with NSF</b><br>
               </td>
-              <td><a href="https://han-wei-shen.github.io/" target="_blank">Han-Wei Shen</a> and selected session speakers</td>
-              <td></td>
+              <td data-label="Speaker(s)"><a href="https://han-wei-shen.github.io/" target="_blank">Han-Wei Shen</a> and selected session speakers</td>
+              <td data-label="Slides"></td>
             </tr>
           </tbody>
         </table>
