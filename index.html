@@ -1,1 +1,547 @@
-TBD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Graphics4Science: Computer Graphics for Scientific Impacts | SIGGRAPH 2025 Course</title>
+  <style>
+      :root {
+      --primary: #482ff7;
+      --primary-light: #6d5efc;
+      --bg: #f8f9fb;
+      --text: #1e1e1e;
+      --muted: #6b7280;
+      --radius: 0.75rem;
+    }
+    /* Base styles */
+    body {
+      font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 2em;
+    }
+    /* Header and Navigation */
+    header {
+      position: relative; /* Needed to position the pseudo-element */
+      background: url('assets/teaser_final.png') no-repeat center center/cover;
+      min-height: 500px;  /* Example header height */
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    header h1 {
+      font-size: 3rem; /* Adjust this value as needed */
+      margin-bottom: 5rem;
+    }
+
+    header .container h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0rem !important;
+      margin-top: 0rem !important;
+    }
+
+    header .container h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0rem !important;
+      margin-top: 1rem !important;
+    }
+
+    /* ---- Navbar ---- */
+    nav {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.75rem 1rem;
+    }
+    .nav-inner a { font-weight: 600; color: var(--text); }
+    .nav-inner a.active { color: var(--primary); }
+
+    /* The overlay */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5); 
+      /* Adjust the last value for desired alpha 
+         e.g., 0.3 => 30% opacity overlay */
+      z-index: 0; /* Place the overlay behind the content */
+    }
+
+    /* Ensure your content is above the overlay */
+    header .container {
+      position: relative;
+      z-index: 1;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav li {
+      font-size: 1.2em;
+      margin: 0 3em;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    /* Hero Section */
+    .hero {
+      background: url('assets/teaser_final.png') no-repeat center center/cover;
+      color: #fff;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2em;
+      margin: 0;
+    }
+    /* Section Styles */
+    .section {
+      padding: 2em 0 1em 0;
+      background: #f8f9fb;
+      margin: 1em 0 0 0;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    /* Speakers Grid */
+    .speakers {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem;
+    }
+
+    .organizers{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;               
+  justify-items:center;   
+}
+
+    
+    /* ---- Cards grid ---- */
+    .grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+    @media (min-width: 600px){ .grid { grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); } }
+
+    .card {
+      background:#fff;
+      border-radius:1rem;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      padding:1.25rem 0.25rem;
+      text-align:center;
+      transition:transform .3s ease;
+    }
+    .card:hover{ transform:translateY(-4px); }
+
+    .card img{
+      width:120px; height:120px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:0.5rem;
+    }
+    .card h3{ margin:0 0 .25rem; font-size:1.0rem; }
+    .card span{ font-size:.9rem; color:var(--text-light); }
+    .card a{ color:var(--primary); text-decoration:none; }
+
+
+    .instructorphoto img {
+      width: 100px;
+      height: 100px; /* Ensure the height matches the width */
+      border-radius: 50%; /* Makes the image circular */
+      object-fit: cover; /* Ensures the image covers the entire area without distortion */
+      margin-bottom: 5px;
+    }
+
+.instructor{
+  width:100%;                
+  max-width:140px;
+  text-align: center;
+}
+    .instructor a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    .speaker-card h3 {
+      margin-top: 0;
+    }
+    .speaker-card a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    /* ---- Schedule ---- */
+    .schedule-wrapper { overflow-x: auto; }
+    table.schedule {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 700px;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    table.schedule th,
+    table.schedule td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    table.schedule thead {
+      background: #f3f3f3;
+      color: #111;
+    }
+    table.schedule tbody tr:nth-child(even) { background: #fafafa; }
+    table.schedule td[colspan] { text-align: center; font-weight: 600; }
+
+    /* Visual Demo Grid */
+    .visual-demo {
+      display: flex;
+      justify-content: stretch;
+      align-items: flex-end;
+      margin: 0 0.5em;
+      background: none;
+      gap: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    
+    .demo-column {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .demo-column img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 0;
+      margin: 0;
+      display: block;
+    }
+    
+    .demo-column p {
+      margin: 0.5em 0 0 0;
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #2c3e50;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* Slides List */
+    .slides-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    
+    .slide-item {
+      background: #f8f9fa;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .slide-item i {
+      color: #667eea;
+      font-size: 1.2rem;
+      margin-top: 0.2rem;
+    }
+    
+    .sub-items {
+      list-style: none;
+      margin-top: 1rem;
+      margin-left: 2rem;
+    }
+    
+    .sub-items li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .sub-items li:last-child {
+      border-bottom: none;
+    }
+
+    /* Download Button */
+    .download-all {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    /* Paper Links */
+    .paper-links {
+      margin-bottom: 1em;
+    }
+    .custom-link {
+      color: #1565c0;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    /* BibTeX Section */
+    .bibtex-section {
+      background: #f8f9fa;
+      padding: 0rem;
+      border-radius: 8px;
+      font-family: 'Courier New';
+      /* white-space: pre-wrap; */
+      margin: 0rem 0;
+      margin-bottom: 0.5em;
+      text-align: left !important;
+    }
+
+    .bibtex-section pre {
+      font-family: 'Courier New', monospace !important;
+      background: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #667eea, transparent);
+      margin: 3rem 0;
+    }
+
+    .lecturer-list div {
+      margin-bottom: 0.3em;
+    }
+    .lecturer-list b {
+      font-size: 1.08em;
+      letter-spacing: 0.01em;
+    }
+
+    /* #materials h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    #materials.section {
+      padding-top: 0;
+      padding-bottom: 0;
+    } */
+  </style>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Graphics4Science: Computer Graphics for Scientific Impacts</h1>
+      <h3>SIGGRAPH 2025 Course</h3>
+      <h2>2:00pm - 5:15pm PDT, Thursday, 14 August 2025</h2>
+      <h2>West Building, Ballroom C, Vancouver Convention Center</h2>
+    </div>
+  </header>
+  
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#about">Course Description</a>
+      <!-- <a href="#visual-demo">Visual Demo</a> -->
+      <a href="#slides">Schedule</a>
+      <a href="#materials">Materials</a>
+      <!-- <a href="#lecturers">Lecturers</a> -->
+      <a href="#top">Top ↑</a>
+    </div>
+  </nav>
+  
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>Course Description</h2>
+      <p>
+        Computer graphics, often associated with films, games, and visual effects, has long been a powerful tool for addressing scientific challenges—from its origins in 3D visualization for medical imaging to its role in modern computational modeling and simulation. 
+        This course explores the deep and evolving relationship between computer graphics and science, highlighting past achievements, ongoing contributions, and open questions that remain. 
+        We show how core methods, such as geometric reasoning and physical modeling, provide inductive biases that help address challenges in both fields, especially in data-scarce settings. 
+        To that end, we aim to reframe graphics as a modeling language for science by bridging vocabulary gaps between the two communities. 
+        Designed for both newcomers and experts, Graphics4Science invites the graphics community to engage with science, tackle high-impact problems where graphics expertise can make a difference, and contribute to the future of scientific discovery. 
+      </p>
+    </div>
+  </section>
+
+  <!-- Visual Demo Section -->
+  <div class="container">
+    <div class="visual-demo">
+      <div class="demo-column">
+        <img src="/assets/visualization.png" alt="Visualization">
+        <p><b>Visualization</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/imaging.png" alt="Imaging">
+        <p><b>Imaging</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/geometry.png" alt="Geometry">
+        <p><b>Geometry</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/simulation.png" alt="Simulation">
+        <p><b>Simulation</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/design.png" alt="Design">
+        <p><b>Design</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slides Section -->
+  <section id="slides" class="section">
+    <div class="container">
+      <h2>Schedule</h2>
+      <div class="schedule-wrapper">
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th style="width:100px;">Time</th>
+              <th style="width:260px;">Session</th>
+              <th style="width:300px;">Speaker(s)</th>
+              <th style="width:100px;">Slides</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>14:00 - 14:10</td>
+              <td><b>Introduction</b></td>
+              <td><a href="https://peterchencyc.com/" target="_blank">Peter Yichen Chen</a>, <a href="https://www.minghaoguo.com/" target="_blank">Minghao Guo</a></td>
+              <td><a href="#" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td>14:10 - 14:35</td>
+              <td><b>Visualization for Science</b></td>
+              <td><a href="https://vcg.seas.harvard.edu/" target="_blank">Hanspeter Pfister</a></td>
+              <td><a href="#" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td>14:35 - 15:00</td>
+              <td><b>Simulation for Science</b></td>
+              <td><a href="https://www.cs.umd.edu/~lin/" target="_blank">Ming Lin</a></td>
+              <td><a href="#" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td>15:00 - 15:25</td>
+              <td><b>Imaging for Science</b></td>
+              <td><a href="https://billf.mit.edu/" target="_blank">Bill Freeman</a></td>
+              <td><a href="#" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td>15:25 - 15:50</td>
+              <td><b>Geometry for Science</b></td>
+              <td><a href="https://www.cs.utexas.edu/~huangqx/" target="_blank">Qixing Huang</a></td>
+              <td><a href="#" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td>15:50 - 16:15</td>
+              <td><b>Design for Science</b></td>
+              <td><a href="https://cdfg.mit.edu/wojciech" target="_blank">Wojciech Matusik</a></td>
+              <td><a href="#" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td>16:15 - 17:00</td>
+              <td>
+                <b>Panel Discussion with NSF</b><br>
+              </td>
+              <td><a href="https://han-wei-shen.github.io/" target="_blank">Han-Wei Shen</a> and selected session speakers</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materials Section -->
+  <section id="materials" class="section">
+    <div class="container">
+      <h2>Materials</h2>
+      <div class="paper-links">
+        Paper PDF: <a href="https://arxiv.org/abs/2506.15786" class="custom-link" target="_blank">[Link]</a>
+        &nbsp;Recordings: <a href="https://arxiv.org/abs/2506.15786" class="custom-link" targe
+        t="_blank">[Link]</a>
+      </div>
+      
+      
+      <h3>Acknowledgement</h3>
+      <p>acknowledgement</p>
+      
+      <h3>BibTex</h3>
+      <div class="bibtex-section">
+        <pre>
+@article{yichen2025graphics4science,
+    title={Graphics4Science: Computer Graphics for Scientific Impacts},
+    author={Yichen Chen, Peter and Guo, Minghao and Pfister, Hanspeter and Lin, Ming and Freeman, William and Huang, Qixing and Shen, Han-Wei and Matusik, Wojciech},
+    journal={SIGGRAPH 2025 Course},
+    year={2025}
+}
+        </pre>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
