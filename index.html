@@ -14,6 +14,12 @@
       --radius: 0.75rem;
     }
     /* Base styles */
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
     body {
       font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Arial, sans-serif;
       margin: 0;
@@ -31,7 +37,10 @@
     /* Mobile responsive adjustments */
     @media (max-width: 768px) {
       .container {
-        padding: 0 1em;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0 0.5em;
       }
       
       header h1 {
