@@ -272,6 +272,51 @@
       letter-spacing: 0.01em;
     }
 
+    .speakers-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .speaker-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 180px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 1rem;
+      text-align: center;
+    }
+    .speaker-card img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 0.7em;
+      background: #eee;
+    }
+    .speaker-card b {
+      font-size: 1.08em;
+      letter-spacing: 0.01em;
+    }
+    .speaker-card div {
+      font-size: 1em;
+    }
+    @media (max-width: 700px) {
+      .speakers-grid {
+        gap: 1rem;
+      }
+      .speaker-card {
+        width: 48vw;
+        min-width: 140px;
+        max-width: 200px;
+        margin-bottom: 1.5rem;
+      }
+    }
+
   </style>
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -359,37 +404,37 @@
               <td data-label="Time">14:00 - 14:10</td>
               <td data-label="Session"><b>Introduction</b></td>
               <td data-label="Speaker(s)"><a href="https://peterchencyc.com/" target="_blank">Peter Yichen Chen</a>, <a href="https://www.minghaoguo.com/" target="_blank">Minghao Guo</a></td>
-              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides[TBD]</a></td>
             </tr>
             <tr>
               <td data-label="Time">14:10 - 14:35</td>
               <td data-label="Session"><b>Visualization for Science</b></td>
               <td data-label="Speaker(s)"><a href="https://vcg.seas.harvard.edu/" target="_blank">Hanspeter Pfister</a>, <a href="https://han-wei-shen.github.io/" target="_blank">Han-Wei Shen</a></td>
-              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides[TBD]</a></td>
             </tr>
             <tr>
               <td data-label="Time">14:35 - 15:00</td>
               <td data-label="Session"><b>Simulation for Science</b></td>
               <td data-label="Speaker(s)"><a href="https://www.cs.umd.edu/~lin/" target="_blank">Ming Lin</a></td>
-              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides[TBD]</a></td>
             </tr>
             <tr>
               <td data-label="Time">15:00 - 15:25</td>
               <td data-label="Session"><b>Imaging for Science</b></td>
               <td data-label="Speaker(s)"><a href="https://billf.mit.edu/" target="_blank">Bill Freeman</a></td>
-              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides[TBD]</a></td>
             </tr>
             <tr>
               <td data-label="Time">15:25 - 15:50</td>
               <td data-label="Session"><b>Geometry for Science</b></td>
               <td data-label="Speaker(s)"><a href="https://www.cs.utexas.edu/~huangqx/" target="_blank">Qixing Huang</a></td>
-              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides[TBD]</a></td>
             </tr>
             <tr>
               <td data-label="Time">15:50 - 16:15</td>
               <td data-label="Session"><b>Design for Science</b></td>
               <td data-label="Speaker(s)"><a href="https://cdfg.mit.edu/wojciech" target="_blank">Wojciech Matusik</a></td>
-              <td data-label="Slides"><a href="#" target="_blank">Slides</a></td>
+              <td data-label="Slides"><a href="#" target="_blank">Slides[TBD]</a></td>
             </tr>
             <tr>
               <td data-label="Time">16:15 - 17:00</td>
@@ -411,30 +456,13 @@
       <h2>Materials</h2>
       <div class="paper-links">
         Paper PDF: <a href="https://arxiv.org/abs/2506.15786" class="custom-link" target="_blank">[Link]</a>
-        &nbsp;Recordings: <a href="https://arxiv.org/abs/2506.15786" class="custom-link" targe
-        t="_blank">[Link]</a>
-      </div>
-      
-      
-      <h3>Acknowledgement</h3>
-      <p>We thank Siyuan Chen, Liwen Wangcao for their help in preparing the course website and group chats.</p>
-      </p>
-      
-      <h3>BibTex</h3>
-      <div class="bibtex-section">
-        <pre>
-@article{yichen2025graphics4science,
-    title={Graphics4Science: Computer Graphics for Scientific Impacts},
-    author={Yichen Chen, Peter and Guo, Minghao and Pfister, Hanspeter and Lin, Ming and Freeman, William and Huang, Qixing and Shen, Han-Wei and Matusik, Wojciech},
-    journal={SIGGRAPH 2025 Course},
-    year={2025}
-}
-        </pre>
+        &nbsp;Recordings: <a href="" class="custom-link" targe
+        t="_blank">[TBD]</a>
       </div>
     </div>
   </section>
 
-  <!-- Community Section -->
+  <!-- Community Section -->  
   <section class="section">
     <div class="container">
       <h2>Interested?</h2>
@@ -458,7 +486,89 @@
     </div>
   </section>
 
-  
+  <!-- Lecturers Section -->
+  <section id="lecturers" class="section">
+    <div class="container">
+      <h2>Speakers</h2>
+      <div class="speakers-grid">
+        <div class="speaker-card">
+          <img src="https://peterchencyc.com/assets/img/prof_pic.png" alt="Peter Yichen Chen">
+          <div>
+            <b>Peter Yichen Chen</b><br>
+            University of British Columbia, Canada
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://www.minghaoguo.com/imgs/minghao_guo.jpeg" alt="Minghao Guo">
+          <div>
+            <b>Minghao Guo</b><br>
+            CSAIL, MIT, USA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://vcg.seas.harvard.edu/content/1-people/0-hanspeter-pfister/pfister_connectomics.jpg" alt="Hanspeter Pfister">
+          <div>
+            <b>Hanspeter Pfister</b><br>
+            Harvard University, USA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://www.cs.umd.edu/~lin/lin.jpg" alt="Ming Lin">
+          <div>
+            <b>Ming Lin</b><br>
+            University of Maryland College Park, USA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://billf.mit.edu/files/2014/04/WilliamFreeman_332x332.jpg" alt="William Freeman">
+          <div>
+            <b>William Freeman</b><br>
+            CSAIL, MIT, USA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://www.cs.utexas.edu/~huangqx/peter.JPG" alt="Qixing Huang">
+          <div>
+            <b>Qixing Huang</b><br>
+            The University of Texas at Austin, USA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://han-wei-shen.github.io/img/hwshen_1.jpg" alt="Han-Wei Shen">
+          <div>
+            <b>Han-Wei Shen</b><br>
+            National Science Foundation, USA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://meche.mit.edu/sites/default/files/styles/medium/public/pictures/picture-1949-1606310263.jpg?itok=LTm8mMC6" alt="Wojciech Matusik">
+          <div>
+            <b>Wojciech Matusik</b><br>
+            CSAIL, MIT, USA
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Acknowledgement and BibTex at the end -->
+  <section class="section">
+    <div class="container">
+      <h3>Acknowledgement</h3>
+      <p>We thank Siyuan Chen, Liwen Wangcao for their help in preparing the course website and group chats.</p>
+      <h3>BibTex</h3>
+      <div class="bibtex-section">
+        <pre>
+@article{yichen2025graphics4science,
+    title={Graphics4Science: Computer Graphics for Scientific Impacts},
+    author={Yichen Chen, Peter and Guo, Minghao and Pfister, Hanspeter and Lin, Ming and Freeman, William and Huang, Qixing and Shen, Han-Wei and Matusik, Wojciech},
+    journal={SIGGRAPH 2025 Course},
+    year={2025}
+}
+        </pre>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
