@@ -317,6 +317,44 @@
       }
     }
 
+    /* WeChat Tooltip Styles */
+    .wechat-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .wechat-tooltip {
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 1000;
+    }
+    
+    .wechat-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #333;
+    }
+    
+    .wechat-container:hover .wechat-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
   </style>
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -470,19 +508,24 @@
         Join Graphics4Science community on Discord, WeChat, and Slack
       </p>
       <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-        <a href="https://discord.gg/MwzKvKsb" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #5865F2; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
+        <a href="https://discord.gg/QfTkrUzQ" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #5865F2; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
           <i class="fab fa-discord"></i>
           Discord
         </a>
-        <a href="" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #07C160; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
-          <i class="fab fa-weixin"></i>
-          WeChat
-        </a>
-        <a href="https://join.slack.com/t/graphics4science/shared_invite/zt-39bf2byzq-w7baDQQz~rt4f~61bIVU6g" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #4A154B; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
-          <i class="fab fa-slack"></i>
-          Slack
-        </a>
-      </div>
+        <div class="wechat-container">
+            <a href="#" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #07C160; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
+              <i class="fab fa-weixin"></i>
+              WeChat
+            </a>
+            <div class="wechat-tooltip">
+              Contact: WeChat ID xin13919247900
+            </div>
+          </div>
+          <a href="https://join.slack.com/t/graphics4science/shared_invite/zt-394dh9e0j-VYv4lmcJZC4Izei8cZpBmg" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #4A154B; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
+            <i class="fab fa-slack"></i>
+            Slack
+          </a>
+        </div>
     </div>
   </section>
 
@@ -494,56 +537,56 @@
         <div class="speaker-card">
           <img src="https://peterchencyc.com/assets/img/prof_pic.png" alt="Peter Yichen Chen">
           <div>
-            <b>Peter Yichen Chen</b><br>
+            <b><a href="https://peterchencyc.com/" target="_blank" style="color: inherit; text-decoration: none;">Peter Yichen Chen</a></b><br>
             University of British Columbia
           </div>
         </div>
         <div class="speaker-card">
           <img src="https://www.minghaoguo.com/imgs/minghao_guo.jpeg" alt="Minghao Guo">
           <div>
-            <b>Minghao Guo</b><br>
+            <b><a href="https://www.minghaoguo.com/" target="_blank" style="color: inherit; text-decoration: none;">Minghao Guo</a></b><br>
             CSAIL, MIT
           </div>
         </div>
         <div class="speaker-card">
           <img src="https://vcg.seas.harvard.edu/content/1-people/0-hanspeter-pfister/pfister_connectomics.jpg" alt="Hanspeter Pfister">
           <div>
-            <b>Hanspeter Pfister</b><br>
+            <b><a href="https://vcg.seas.harvard.edu/" target="_blank" style="color: inherit; text-decoration: none;">Hanspeter Pfister</a></b><br>
             Harvard University
           </div>
         </div>
         <div class="speaker-card">
           <img src="https://www.cs.umd.edu/~lin/lin.jpg" alt="Ming Lin">
           <div>
-            <b>Ming Lin</b><br>
+            <b><a href="https://www.cs.umd.edu/~lin/" target="_blank" style="color: inherit; text-decoration: none;">Ming Lin</a></b><br>
             University of Maryland College Park
           </div>
         </div>
         <div class="speaker-card">
           <img src="https://billf.mit.edu/files/2014/04/WilliamFreeman_332x332.jpg" alt="William Freeman">
           <div>
-            <b>William Freeman</b><br>
+            <b><a href="https://billf.mit.edu/" target="_blank" style="color: inherit; text-decoration: none;">William Freeman</a></b><br>
             CSAIL, MIT
           </div>
         </div>
         <div class="speaker-card">
           <img src="https://www.cs.utexas.edu/~huangqx/peter.JPG" alt="Qixing Huang">
           <div>
-            <b>Qixing Huang</b><br>
+            <b><a href="https://www.cs.utexas.edu/~huangqx/" target="_blank" style="color: inherit; text-decoration: none;">Qixing Huang</a></b><br>
             The University of Texas at Austin
           </div>
         </div>
         <div class="speaker-card">
           <img src="https://han-wei-shen.github.io/img/hwshen_1.jpg" alt="Han-Wei Shen">
           <div>
-            <b>Han-Wei Shen</b><br>
+            <b><a href="https://han-wei-shen.github.io/" target="_blank" style="color: inherit; text-decoration: none;">Han-Wei Shen</a></b><br>
             The Ohio State University
           </div>
         </div>
         <div class="speaker-card">
           <img src="https://meche.mit.edu/sites/default/files/styles/medium/public/pictures/picture-1949-1606310263.jpg?itok=LTm8mMC6" alt="Wojciech Matusik">
           <div>
-            <b>Wojciech Matusik</b><br>
+            <b><a href="https://cdfg.mit.edu/wojciech" target="_blank" style="color: inherit; text-decoration: none;">Wojciech Matusik</a></b><br>
             CSAIL, MIT
           </div>
         </div>
@@ -566,6 +609,21 @@
     year={2025}
 }
         </pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors Section -->
+  <section class="section">
+    <div class="container">
+      <h2>Sponsors</h2>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem;">
+        <a href="https://en.xtalpi.com/" target="_blank" style="text-decoration: none;">
+          <img src="assets/XTaiPi.png" alt="XTaiPi" style="max-height: 200px; object-fit: contain;">
+        </a>
+        <a href="https://www.foundrybio.ai/" target="_blank" style="text-decoration: none;">
+          <img src="assets/Foundry.PNG" alt="Foundry" style="max-height: 200px; object-fit: contain;">
+        </a>
       </div>
     </div>
   </section>
