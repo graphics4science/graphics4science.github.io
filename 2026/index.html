@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <title>Graphics4Science: Computer Graphics for Scientific Impacts | SIGGRAPH 2026 Workshop</title>
+  <style>
+      :root {
+      --primary: #482ff7;
+      --primary-light: #6d5efc;
+      --bg: #f8f9fb;
+      --text: #1e1e1e;
+      --muted: #6b7280;
+      --radius: 0.75rem;
+    }
+    /* Base styles */
+    /* html {
+      box-sizing: border-box;
+    } */
+    /* *, *:before, *:after {
+      box-sizing: inherit;
+    } */
+    body {
+      font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      /* width: 100%;
+      max-width: 100%; */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2em;
+    }
+    
+    
+    /* Header and Navigation */
+    header {
+      position: relative; /* Needed to position the pseudo-element */
+      background: url('assets2/teaser.png') no-repeat center center/cover;
+      min-height: 500px;  /* Example header height */
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    header h1 {
+      font-size: 3rem; /* Adjust this value as needed */
+      margin-bottom: 5rem;
+    }
+
+    header .container h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0rem !important;
+      margin-top: 0rem !important;
+    }
+
+    header .container h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0rem !important;
+      margin-top: 1rem !important;
+    }
+
+    /* ---- Navbar ---- */
+    nav {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.75rem 1rem;
+    }
+    .nav-inner a { font-weight: 600; color: var(--text); }
+    .nav-inner a.active { color: var(--primary); }
+
+    /* The overlay */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5); 
+      /* Adjust the last value for desired alpha 
+         e.g., 0.3 => 30% opacity overlay */
+      z-index: 0; /* Place the overlay behind the content */
+    }
+
+    /* Ensure your content is above the overlay */
+    header .container {
+      position: relative;
+      z-index: 1;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav li {
+      font-size: 1.2em;
+      margin: 0 3em;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    /* Hero Section */
+    .hero {
+      background: url('assets2/teaser.png') no-repeat center center/cover;
+      color: #fff;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2em;
+      margin: 0;
+    }
+    /* Section Styles */
+    .section {
+      padding: 2em 0 1em 0;
+      background: #f8f9fb;
+      margin: 1em 0 0 0;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    /* ---- Schedule ---- */
+    .schedule-wrapper { overflow-x: auto; }
+    table.schedule {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 700px;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    table.schedule th,
+    table.schedule td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    table.schedule thead {
+      background: #f3f3f3;
+      color: #111;
+    }
+    table.schedule tbody tr:nth-child(even) { background: #fafafa; }
+    table.schedule td[colspan] { text-align: center; font-weight: 600; }
+
+    /* Visual Demo Grid */
+    .visual-demo {
+      display: flex;
+      justify-content: stretch;
+      align-items: flex-end;
+      margin: 0 0.5em;
+      background: none;
+      gap: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    
+    .demo-column {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .demo-column img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 0;
+      margin: 0;
+      display: block;
+    }
+    
+    .demo-column p {
+      margin: 0.5em 0 0 0;
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #2c3e50;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* Slides List */
+    .slides-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    
+    .slide-item {
+      background: #f8f9fa;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .slide-item i {
+      color: #667eea;
+      font-size: 1.2rem;
+      margin-top: 0.2rem;
+    }
+    
+
+    /* Paper Links */
+    .paper-links {
+      margin-bottom: 1em;
+    }
+    .custom-link {
+      color: #1565c0;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    /* BibTeX Section */
+    .bibtex-section {
+      background: #f8f9fa;
+      padding: 0rem;
+      border-radius: 8px;
+      font-family: 'Courier New';
+      /* white-space: pre-wrap; */
+      margin: 0rem 0;
+      margin-bottom: 0.5em;
+      text-align: left !important;
+    }
+
+    .bibtex-section pre {
+      font-family: 'Courier New', monospace !important;
+      background: none;
+      margin: 0;
+      padding: 0;
+      white-space: pre-wrap;      /* Wraps long lines */
+      word-break: break-all;    
+    }
+
+    .lecturer-list div {
+      margin-bottom: 0.3em;
+    }
+    .lecturer-list b {
+      font-size: 1.08em;
+      letter-spacing: 0.01em;
+    }
+
+    .speakers-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .speaker-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 180px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 1rem;
+      text-align: center;
+    }
+    .speaker-card img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 0.7em;
+      background: #eee;
+    }
+    .speaker-card b {
+      font-size: 1.08em;
+      letter-spacing: 0.01em;
+    }
+    .speaker-card div {
+      font-size: 1em;
+    }
+    @media (max-width: 700px) {
+      .speakers-grid {
+        gap: 1rem;
+      }
+      .speaker-card {
+        width: 48vw;
+        min-width: 140px;
+        max-width: 200px;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    /* WeChat Tooltip Styles */
+    .wechat-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .wechat-tooltip {
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 1000;
+    }
+    
+    .wechat-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #333;
+    }
+    
+    .wechat-container:hover .wechat-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+  </style>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="assets/protein.png">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Graphics4Science: Computer Graphics for Scientific Impacts</h1>
+      <h3>SIGGRAPH 2026 Workshop</h3>
+      <!-- <h2>2:00pm - 5:15pm PDT, Thursday, 14 August 2025</h2>
+      <h2>West Building, Ballroom C, Vancouver Convention Center</h2> -->
+    </div>
+  </header>
+  
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#about">Workshop Description</a>
+      <!-- <a href="#visual-demo">Visual Demo</a> -->
+      <!-- <a href="#slides">Schedule</a> -->
+      <a href="#materials">Materials</a>
+      <!-- <a href="#lecturers">Lecturers</a> -->
+      <a href="#top">Top ↑</a>
+    </div>
+  </nav>
+  
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>Course Description</h2>
+      <p>
+        Computer graphics is increasingly central to modern scientific discovery, providing not only visualization but also physically grounded modeling, simulation, inverse problem formulations, and interactive systems for hypothesis generation.
+        Building on the Graphics4Science course at SIGGRAPH 2025, the 2026 edition shifts to a workshop-style format with fewer broadcast talks, more technical dives, and more in-depth discussion.
+        The program features four keynotes spanning computational imaging, scientific reconstruction for structural biology, generative modeling for molecular structures, and reduced-order modeling for physical simulation, complemented by two curated lightning-talk sessions that highlight the most recent advances from the broader community.
+      </p>
+    </div>
+  </section>
+
+  <!-- Visual Demo Section -->
+  <!-- <div class="container">
+    <div class="visual-demo">
+      <div class="demo-column">
+        <img src="/assets/visualization.png" alt="Visualization">
+        <p><b>Visualization</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/imaging.png" alt="Imaging">
+        <p><b>Imaging</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/geometry.png" alt="Geometry">
+        <p><b>Geometry</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/simulation.png" alt="Simulation">
+        <p><b>Simulation</b></p>
+      </div>
+      <div class="demo-column">
+        <img src="/assets/design.png" alt="Design">
+        <p><b>Design</b></p>
+      </div>
+    </div>
+  </div> -->
+  <div class="container">
+    <div class="pdf-viewer" style="width: 100%; height: 800px;">
+      <iframe 
+        src="/assets2/papers.pdf"
+        width="100%"
+        height="100%"
+        style="border: none;"
+      >
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Slides Section -->
+  <!-- <section id="slides" class="section">
+    <div class="container">
+      <h2>Schedule</h2>
+      <div class="schedule-wrapper">
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th style="width:100px;">Time</th>
+              <th style="width:260px;">Session</th>
+              <th style="width:300px;">Speaker(s)</th>
+              <th style="width:100px;">Slides</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Time">14:00 - 14:10</td>
+              <td data-label="Session"><b>Introduction</b></td>
+              <td data-label="Speaker(s)"><a href="https://peterchencyc.com/" target="_blank">Peter Yichen Chen</a>, <a href="https://www.minghaoguo.com/" target="_blank">Minghao Guo</a></td>
+              <td data-label="Slides"><a href="https://www.dropbox.com/scl/fi/b5fghccdbf18vtl3x1ggx/Graphics4Science_intro.pptx?rlkey=2z3bjop3stburr47qztf54ibf&st=upkupjda&dl=0" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td data-label="Time">14:10 - 14:35</td>
+              <td data-label="Session"><b>Visualization for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://vcg.seas.harvard.edu/" target="_blank">Hanspeter Pfister</a>, <a href="https://han-wei-shen.github.io/" target="_blank">Han-Wei Shen</a></td>
+              <td data-label="Slides"><a href="https://www.dropbox.com/scl/fi/zeqw5ypvs8vin8mivk0x8/Visualization_for_Science.pptx?rlkey=wcwpghqtgh94kgqmtujh5glu5&st=qps26z0v&dl=0" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td data-label="Time">14:35 - 15:00</td>
+              <td data-label="Session"><b>Simulation for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://www.cs.umd.edu/~lin/" target="_blank">Ming Lin</a></td>
+              <td data-label="Slides"><a href="https://www.dropbox.com/scl/fi/1hn4xsqe0i3t5vhripn2x/Simulation_for_Science.pptx?rlkey=rz1kj88frkba4dbnrie7w5a63&st=onf7gvq5&dl=0" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td data-label="Time">15:00 - 15:25</td>
+              <td data-label="Session"><b>Imaging for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://billf.mit.edu/" target="_blank">Bill Freeman</a></td>
+              <td data-label="Slides"><a href="https://www.dropbox.com/scl/fi/mgmob6d90ps4l7shrk7ti/Imaging_for_Science.pptx?rlkey=4yv4uhy9wbbyd4bsefdjsnobp&st=mev896aw&dl=0" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td data-label="Time">15:25 - 15:45</td>
+              <td data-label="Session" colspan="3" style="text-align: center;"><b>Coffee Break</b></td>
+            </tr>
+            <tr>
+              <td data-label="Time">15:45 - 16:10</td>
+              <td data-label="Session"><b>Geometry for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://www.cs.utexas.edu/~huangqx/" target="_blank">Qixing Huang</a></td>
+              <td data-label="Slides"><a href="https://www.dropbox.com/scl/fi/q3uh7or1gpx81lbfdgl1s/Geometry_for_Science.pptx?rlkey=jpm15emv7rvkc5ewofmgj4f1i&st=paa8wabo&dl=0" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td data-label="Time">16:10 - 16:35</td>
+              <td data-label="Session"><b>Design for Science</b></td>
+              <td data-label="Speaker(s)"><a href="https://cdfg.mit.edu/wojciech" target="_blank">Wojciech Matusik</a></td>
+              <td data-label="Slides"><a href="https://www.dropbox.com/scl/fi/swrfmew2fbvvmxn920x9h/Design_for_Science.pptx?rlkey=7vgaxk3u6kofm5zhe2lxkjf4c&st=8m8vwa6v&dl=0" target="_blank">Slides</a></td>
+            </tr>
+            <tr>
+              <td data-label="Time">16:35 - 17:15</td>
+              <td data-label="Session">
+                <b>Panel Discussion</b><br>
+              </td>
+              <td data-label="Speaker(s)">Selected session speakers</td>
+              <td data-label="Slides"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Materials Section -->
+  <!-- <section id="materials" class="section">
+    <div class="container">
+      <h2>Materials</h2>
+      <div class="paper-links">
+        Paper PDF: <a href="https://arxiv.org/abs/2506.15786" class="custom-link" target="_blank">[Link]</a>
+        &nbsp;Slides PDF: <a href="https://www.dropbox.com/scl/fi/powiyxkbmxf92efgfq12d/Graphics4Science_Altogether.pdf?rlkey=apcmr4x0e3jmuokld8dab2cdr&st=schuo5on&dl=0" class="custom-link" target="_blank">[Link]</a>
+        &nbsp;Recordings: <a href="" class="custom-link" targe
+        t="_blank">[TBD]</a>
+      </div>
+    </div>
+  </section> -->
+
+  
+  <!-- Graphics4Science Projects Section -->
+  <section id="protein-gs" class="section">
+    <div class="container">
+      <h2>Graphics4Science Projects</h2>
+      <!-- Flex container to align image and content side by side -->
+      <div class="project-card" style="display: flex; align-items: center; gap: 20px;">
+        <!-- Left: Project image -->
+        <div class="card-image" style="flex: 0 0 auto;">
+          <img src="/projects/ProteinGS.png" alt="Protein GS Project" style="width: 400px; height: auto;">
+        </div>
+        <!-- Right: Project details -->
+        <div class="card-content" style="margin: 0;">
+          <h3 class="project-title">Physically Valid Biomolecular Interaction Modeling with Gauss-Seidel Projection</h3>
+          <!-- Author list -->
+          <p class="project-authors">
+            <a href="https://github.com/chensiyuan030105" target="_blank" rel="noopener noreferrer">Siyuan Chen</a><sup>*</sup>,
+            <a href="https://www.minghaoguo.com/" target="_blank" rel="noopener noreferrer">Minghao Guo</a><sup>*†</sup>,
+            <a href="https://wclw1021.github.io/" target="_blank" rel="noopener noreferrer">Caoliwen Wang</a>,
+            <a href="https://ankachan.github.io/" target="_blank" rel="noopener noreferrer">Anka He Chen</a>,
+            <a href="https://scholar.google.com/citations?user=pRdel_oAAAAJ&amp;hl=zh-CN" target="_blank" rel="noopener noreferrer">Yikun Zhang</a>,
+            <a href="https://www.linkedin.com/in/jingjingchai/" target="_blank" rel="noopener noreferrer">Jingjing Chai</a>,
+            <a href="https://yangzzzy.github.io/" target="_blank" rel="noopener noreferrer">Yin Yang</a>,
+            <a href="https://cdfg.mit.edu/wojciech" target="_blank" rel="noopener noreferrer">Wojciech Matusik</a>,
+            <a href="https://peterchencyc.com/" target="_blank" rel="noopener noreferrer">Peter Yichen Chen</a><sup>†</sup>
+          </p>
+          <!-- Venue and contribution notes -->
+          <p class="project-meta"><span class="venue-text"><strong>arXiv</strong></span><br><span class="contrib-note">*=equal contribution, †=corresponding author</span></p>
+          <!-- Project links -->
+          <div class="project-links">
+            Project: <a href="https://chensiyuan030105.github.io/ProteinGS/" class="custom-link" target="_blank">[Website]</a>
+            <a href="https://arxiv.org/abs/2510.08946" class="link-btn" target="_blank">[PDF]</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+
+  <!-- Community Section -->  
+  <section class="section">
+    <div class="container">
+      <h2>Interested?</h2>
+      <p style="text-align: center; font-size: 1.2em; margin-bottom: 1.5em;">
+        Join Graphics4Science community on Discord, WeChat, and Slack
+      </p>
+      <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+        <a href="https://discord.gg/hpGfcHrxaU" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #5865F2; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; width: 120px; justify-content: center;">
+          <i class="fab fa-discord"></i>
+          Discord
+        </a>
+        <div class="wechat-container">
+            <a href="#" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #07C160; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; width: 120px; justify-content: center;">
+              <i class="fab fa-weixin"></i>
+              WeChat
+            </a>
+            <div class="wechat-tooltip">
+              Contact: WeChat ID xin13919247900
+            </div>
+          </div>
+          <a href="https://join.slack.com/t/graphics4science/shared_invite/zt-394dh9e0j-VYv4lmcJZC4Izei8cZpBmg" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #4A154B; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; width: 120px; justify-content: center;">
+            <i class="fab fa-slack"></i>
+            Slack
+          </a>
+        </div>
+    </div>
+  </section>
+
+  <!-- Lecturers Section -->
+  <section id="lecturers" class="section">
+    <div class="container">
+      <h2>Speakers</h2>
+      <div class="speakers-grid">
+        <div class="speaker-card">
+          <img src="https://vccimaging.org/People/heidriw/heidrich.jpg" alt="Wolfgang Heidrich">
+          <div>
+            <b><a href="https://vccimaging.org/People/heidriw/" target="_blank" style="color: inherit; text-decoration: none;">Wolfgang Heidrich</a></b><br>
+            KAUST
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://www.cs.princeton.edu/~zhonge/assets/img/Zhong_small.png" alt="Ellen D. Zhong">
+          <div>
+            <b><a href="https://www.cs.princeton.edu/~zhonge/" target="_blank" style="color: inherit; text-decoration: none;">Ellen D. Zhong</a></b><br>
+            Princeton University
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://karstenkreis.github.io/images/profile.png" alt="Karsten Kreis">
+          <div>
+            <b><a href="https://karstenkreis.github.io/" target="_blank" style="color: inherit; text-decoration: none;">Karsten Kreis</a></b><br>
+            NVIDIA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://peterchencyc.com/assets/img/prof_pic.png" alt="Peter Yichen Chen">
+          <div>
+            <b><a href="https://peterchencyc.com/" target="_blank" style="color: inherit; text-decoration: none;">Peter Yichen Chen</a></b><br>
+            University of British Columbia
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organizers Section -->
+  <section id="Organizers" class="section">
+    <div class="container">
+      <h2>Organizers</h2>
+      <div class="speakers-grid">
+        <div class="speaker-card">
+          <img src="https://www.minghaoguo.com/imgs/minghao_guo.jpeg" alt="Minghao Guo">
+          <div>
+            <b><a href="https://www.minghaoguo.com/" target="_blank" style="color: inherit; text-decoration: none;">Minghao Guo</a></b><br>
+            CSAIL, MIT
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://people.csail.mit.edu/mina/images/mina_konakovic.png" alt="Mina Konaković Luković">
+          <div>
+            <b><a href="https://people.csail.mit.edu/mina/" target="_blank" style="color: inherit; text-decoration: none;">Mina Konaković Luković</a></b><br>
+            CSAIL, MIT
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://www.cs.utexas.edu/~huangqx/peter.JPG" alt="Qixing Huang">
+          <div>
+            <b><a href="https://www.cs.utexas.edu/~huangqx/" target="_blank" style="color: inherit; text-decoration: none;">Qixing Huang</a></b><br>
+            The University of Texas at Austin
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://yangzzzy.github.io/web_images/yin.jpg" alt="Yin Yang">
+          <div>
+            <b><a href="https://yangzzzy.github.io/" target="_blank" style="color: inherit; text-decoration: none;">Yin Yang</a></b><br>
+            University of Utah
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://www.math.ucla.edu/~cffjiang/asset/profile.jpg" alt="Chenfanfu Jiang">
+          <div>
+            <b><a href="https://www.math.ucla.edu/~cffjiang/" target="_blank" style="color: inherit; text-decoration: none;">Chenfanfu Jiang</a></b><br>
+            UCLA
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://meche.mit.edu/sites/default/files/styles/medium/public/pictures/picture-1949-1606310263.jpg?itok=LTm8mMC6" alt="Wojciech Matusik">
+          <div>
+            <b><a href="https://cdfg.mit.edu/wojciech" target="_blank" style="color: inherit; text-decoration: none;">Wojciech Matusik</a></b><br>
+            CSAIL, MIT
+          </div>
+        </div>
+        <div class="speaker-card">
+          <img src="https://peterchencyc.com/assets/img/prof_pic.png" alt="Peter Yichen Chen">
+          <div>
+            <b><a href="https://peterchencyc.com/" target="_blank" style="color: inherit; text-decoration: none;">Peter Yichen Chen</a></b><br>
+            University of British Columbia
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Acknowledgement and BibTex at the end -->
+  <section class="section">
+    <div class="container">
+      <h3>Acknowledgement</h3>
+      <p>We thank Siyuan Chen, Caoliwen Wang, and Kevin Chen for their help in preparing the course website, setting up group chats, and refining the slides.</p>
+      <!-- <h3>BibTex</h3>
+      <div class="bibtex-section">
+        <pre>
+          @article{yichen2025graphics4science,
+              title={Graphics4Science: Computer Graphics for Scientific Impacts},
+              author={Yichen Chen, Peter and Guo, Minghao and Pfister, Hanspeter and Lin, Ming and Freeman, William and Huang, Qixing and Shen, Han-Wei and Matusik, Wojciech},
+              journal={SIGGRAPH 2025 Course},
+              year={2025}
+          }
+        </pre>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- Sponsors Section -->
+  <section class="section">
+    <div class="container">
+      <h2>Sponsors</h2>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem;">
+        <a href="https://en.xtalpi.com/" target="_blank" style="text-decoration: none;">
+          <img src="assets/XTaiPi.png" alt="XTaiPi" style="max-height: 200px; object-fit: contain;">
+        </a>
+        <a href="https://www.foundrybio.ai/" target="_blank" style="text-decoration: none;">
+          <img src="assets/Foundry.PNG" alt="Foundry" style="max-height: 200px; object-fit: contain;">
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
