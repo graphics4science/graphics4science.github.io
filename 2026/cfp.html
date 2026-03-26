@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Call for Papers | Graphics4Science Workshop @ SIGGRAPH 2026</title>
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #43a047;
+      --bg: #f8f9fb;
+      --text: #1e1e1e;
+      --muted: #6b7280;
+      --radius: 0.75rem;
+    }
+    body {
+      font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2em;
+    }
+
+    /* Header — same as main page */
+    header {
+      position: relative;
+      background: url('/assets2/teaser.png') no-repeat center center/cover;
+      min-height: 500px;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+    header .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 5rem;
+    }
+    header h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0rem !important;
+      margin-top: 1rem !important;
+    }
+
+    /* Navbar — same as main page */
+    nav {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.75rem 1rem;
+    }
+    .nav-inner a { font-weight: 600; color: var(--text); text-decoration: none; }
+    .nav-inner a:hover { color: var(--primary); }
+
+    /* Card sections */
+    .section {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 2em 2.5em;
+      margin: 2em auto;
+    }
+    .section h2 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 0.8em;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.4em;
+    }
+    .section h3 {
+      font-size: 1.15rem;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    .section ul {
+      padding-left: 1.5em;
+    }
+    .section li {
+      margin-bottom: 0.5em;
+    }
+
+    /* Dates table */
+    table.dates {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    table.dates th,
+    table.dates td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    table.dates thead {
+      background: #f3f3f3;
+    }
+    table.dates tbody tr:nth-child(even) { background: #fafafa; }
+    .deadline { color: #d32f2f; font-weight: 700; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.8rem;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.05em;
+      margin-top: 0.5em;
+    }
+    .btn:hover { background: var(--primary-light); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2em;
+      color: var(--muted);
+      font-size: 0.95em;
+    }
+    footer a { color: var(--primary); }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="/assets/protein.png">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Graphics4Science: Graphics for Cross-Scale Reliable Scientific Instruments</h1>
+      <h3>SIGGRAPH 2026 Workshop</h3>
+      <h3>Monday Morning, July 20th</h3>
+      <h3>Los Angeles Convention Center, Los Angeles, CA</h3>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/2026/">&larr; Workshop Home</a>
+      <a href="#overview">Overview</a>
+      <a href="#topics">Topics</a>
+      <a href="#submission">Submission</a>
+      <a href="#dates">Dates</a>
+      <a href="#presentation">Presentation</a>
+      <a href="#policy">Policies</a>
+    </div>
+  </nav>
+
+  <h2 style="text-align: center; margin: 1.5em 0 0 0; font-size: 2rem;">Call for Papers</h2>
+
+  <div class="container">
+
+    <!-- Overview -->
+    <div id="overview" class="section">
+      <h2>Overview</h2>
+      <p>
+        The Graphics4Science workshop at SIGGRAPH 2026 invites researchers and practitioners to submit original work on the use of computer graphics techniques for scientific discovery and instrumentation. Building on the successful SIGGRAPH 2025 course, this workshop aims to foster deeper technical exchange between the graphics community and domain scientists.
+      </p>
+      <p>
+        We welcome contributions that demonstrate how graphics methods&mdash;including rendering, simulation, geometric modeling, visualization, inverse problems, and generative models&mdash;can advance scientific understanding across physical, biological, chemical, and computational sciences.
+      </p>
+      <p style="text-align: center; margin-top: 1.5em;">
+        <a href="https://ssl.linklings.net/conferences/siggraph/" target="_blank" class="btn"><i class="fas fa-upload"></i>&nbsp; Submit via SIGGRAPH Linklings</a>
+      </p>
+    </div>
+
+    <!-- Topics -->
+    <div id="topics" class="section">
+      <h2>Topics of Interest</h2>
+      <p>We encourage submissions spanning a broad range of topics at the intersection of computer graphics and science, including but not limited to:</p>
+      <ul>
+        <li><b>Computational Imaging &amp; Inverse Problems</b> &mdash; novel imaging modalities, computational photography for scientific measurement, tomographic reconstruction, phase retrieval, and inverse rendering for scientific applications</li>
+        <li><b>Scientific Visualization</b> &mdash; volume rendering, flow visualization, molecular visualization, uncertainty visualization, immersive analytics, and large-scale data exploration</li>
+        <li><b>Physically Based Simulation</b> &mdash; fluid dynamics, solid mechanics, multi-physics coupling, reduced-order models, differentiable simulation, and neural surrogates for scientific computing</li>
+        <li><b>Geometric Modeling &amp; Reconstruction</b> &mdash; surface reconstruction from scientific data, point cloud processing, mesh generation for simulation, shape analysis of biological and physical structures</li>
+        <li><b>Generative &amp; Neural Models for Science</b> &mdash; generative models for molecular and material design, neural radiance fields for scientific data, latent representations of physical systems, diffusion models for scientific structure generation</li>
+        <li><b>Interactive Systems &amp; Design</b> &mdash; interactive tools for scientific exploration, computational design for fabrication and experiments, human-in-the-loop optimization, AR/VR for scientific workflows</li>
+        <li><b>Machine Learning for Graphics in Science</b> &mdash; neural operators, physics-informed neural networks, learned simulators, and data-driven methods with applications in scientific domains</li>
+        <li><b>Applications in Domain Sciences</b> &mdash; structural biology &amp; cryo-EM, materials science, astrophysics, geoscience, climate modeling, medical imaging, drug discovery, and other scientific domains</li>
+      </ul>
+    </div>
+
+    <!-- Submission Guidelines -->
+    <div id="submission" class="section">
+      <h2>Submission Guidelines</h2>
+
+      <h3>Submission Tracks</h3>
+      <p>We support two submission formats:</p>
+      <ul>
+        <li><b>Extended Abstract (2 pages)</b> &mdash; A concise summary of completed or ongoing work, preliminary results, or position statements. Extended abstracts are ideal for early-stage research, system demonstrations, and work-in-progress. The 2-page limit excludes references.</li>
+        <li><b>Full Paper (no page limit)</b> &mdash; A complete description of original research with thorough evaluation. Full papers should present mature, well-validated contributions. There is no upper page limit; authors should use as many pages as needed to clearly present their work. References do not count toward any page limit.</li>
+      </ul>
+
+      <h3>Formatting Requirements</h3>
+      <p>All submissions must use the <b>ACM SIGGRAPH template</b>. Specifically:</p>
+      <ul>
+        <li>Use the <a href="https://www.siggraph.org/learn/instructions-authors" target="_blank">ACM SIGGRAPH author guidelines and template</a></li>
+        <li>Submissions should be in PDF format</li>
+        <li>Supplementary material (e.g., videos, code, data) may be uploaded as a single ZIP file (maximum 100 MB)</li>
+        <li>Total main PDF file size must not exceed 50 MB</li>
+      </ul>
+
+      <h3>Submission System</h3>
+      <p>
+        All submissions must be made through the official
+        <a href="https://ssl.linklings.net/conferences/siggraph/" target="_blank"><b>SIGGRAPH Linklings submission portal</b></a>.
+        Authors will need to create an account if they do not already have one.
+      </p>
+
+      <h3>Anonymity</h3>
+      <p>
+        All submissions will undergo <b>single-blind review</b>. Author names and affiliations should be included in the submission. Reviewers will not be anonymous to the organizers but will remain anonymous to the authors.
+      </p>
+    </div>
+
+    <!-- Important Dates -->
+    <div id="dates" class="section">
+      <h2>Important Dates</h2>
+      <p>All deadlines are at <b>23:59 Anywhere on Earth (AoE)</b>.</p>
+      <table class="dates">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Submission Deadline</b></td>
+            <td class="deadline">April 14, 2026</td>
+          </tr>
+          <tr>
+            <td>Reviews Due</td>
+            <td>April 28, 2026</td>
+          </tr>
+          <tr>
+            <td>Acceptance Notification</td>
+            <td>May 5, 2026</td>
+          </tr>
+          <tr>
+            <td>Camera-Ready Deadline</td>
+            <td>May 19, 2026</td>
+          </tr>
+          <tr>
+            <td>Workshop Date</td>
+            <td>July 20, 2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Presentation Format -->
+    <div id="presentation" class="section">
+      <h2>Presentation &amp; Awards</h2>
+
+      <h3>Poster Session</h3>
+      <p>
+        All accepted papers (both extended abstracts and full papers) will be presented as <b>posters</b> during a dedicated poster session at the workshop. Authors are expected to prepare a poster and be available to discuss their work with attendees.
+      </p>
+
+      <h3>Lightning Talks</h3>
+      <p>
+        A subset of accepted papers will be selected for <b>lightning talks</b> (5&ndash;7 minutes each) during the main workshop program. Selection will be based on reviewer scores, topic diversity, and potential for stimulating discussion.
+      </p>
+
+      <h3>Best Paper Award</h3>
+      <p>
+        A <b>Best Paper Award</b> with a cash prize will be presented to an outstanding submission, selected by the program committee. Both extended abstracts and full papers are eligible. The award recognizes exceptional novelty, technical quality, and scientific impact.
+      </p>
+
+      <h3>Attendance Requirement</h3>
+      <p>
+        At least one author of each accepted paper must register for SIGGRAPH 2026 and attend the workshop in person to present the work. Papers without a registered presenter may be withdrawn from the program.
+      </p>
+    </div>
+
+    <!-- Review & Policies -->
+    <div id="policy" class="section">
+      <h2>Review Process &amp; Policies</h2>
+
+      <h3>Review Process</h3>
+      <p>
+        Each submission will be reviewed by at least two members of the program committee. Reviews will evaluate submissions on the following criteria:
+      </p>
+      <ul>
+        <li><b>Relevance</b> &mdash; alignment with the workshop's scope at the intersection of graphics and science</li>
+        <li><b>Novelty</b> &mdash; originality of the contribution</li>
+        <li><b>Technical Quality</b> &mdash; soundness of the methodology and evaluation</li>
+        <li><b>Clarity</b> &mdash; quality of writing and presentation</li>
+        <li><b>Scientific Impact</b> &mdash; potential to advance scientific understanding or practice</li>
+      </ul>
+
+      <h3>Dual Submission Policy</h3>
+      <p>
+        We welcome submissions of work that is under review or has been recently published at other venues (e.g., SIGGRAPH, CVPR, NeurIPS, ICML, Nature). The workshop is <b>non-archival</b>: accepted papers will be posted on the workshop website but will not appear in the ACM Digital Library, so publication at the workshop does not preclude future submission to archival venues.
+      </p>
+      <p>
+        Authors must disclose concurrent submissions at the time of submission. Previously published work should be clearly identified.
+      </p>
+
+      <h3>Use of AI-Generated Content</h3>
+      <p>
+        <b>AI-generated papers are not permitted.</b> Submissions that are substantially generated by AI tools (e.g., large language models) will be desk-rejected. This policy is intended to maintain the integrity and originality of workshop contributions. Minor use of AI tools for grammar or spell-checking is acceptable, but the scientific content, ideas, and writing must be the authors' own.
+      </p>
+
+      <h3>Ethics</h3>
+      <p>
+        All submissions must comply with ethical standards for research involving human subjects, biological materials, or sensitive data. Authors should include an ethics statement if applicable.
+      </p>
+    </div>
+
+    <!-- Contact -->
+    <div class="section" style="text-align: center;">
+      <h2>Questions?</h2>
+      <p>
+        For questions about the call for papers, please contact the organizers via the
+        <a href="https://discord.gg/hpGfcHrxaU" target="_blank">Graphics4Science Discord</a>
+        or email us at
+        <a href="mailto:graphics4science@gmail.com">graphics4science@gmail.com</a>.
+      </p>
+      <p style="margin-top: 1.5em;">
+        <a href="/2026/" class="btn btn-outline">&larr; Back to Workshop Home</a>
+        &nbsp;&nbsp;
+        <a href="https://ssl.linklings.net/conferences/siggraph/" target="_blank" class="btn"><i class="fas fa-upload"></i>&nbsp; Submit Paper</a>
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Graphics4Science Workshop &mdash; <a href="https://s2026.siggraph.org/" target="_blank">SIGGRAPH 2026</a> &mdash; Los Angeles, CA</p>
+  </footer>
+
+</body>
+</html>
